@@ -6,9 +6,9 @@ const app = express();
 // Database Connection
 const pool = new Pool({
   user: 'postgres',
-  host: 'localhost', // e.g., localhost or AWS RDS endpoint
-  database: 'growth_club',
-  password: 'admin',
+  host: 'database-demo.c9kvlfqif68u.us-east-1.rds.amazonaws.com', // e.g., localhost or AWS RDS endpoint
+//  database: 'database-demo',
+  password: 'postgres123',
   port: 5432, // Default PostgreSQL port
 });
 
@@ -17,7 +17,7 @@ pool.connect()
   .then(() => console.log("Connected to PostgreSQL ✅"))
   .catch(err => console.error("Database connection error ❌", err.stack));
 
-app.get('/', async (req, res) => {
+app.get('/siq', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()'); // Get current timestamp
     res.send(`Database Connected: ${result.rows[0].now}`);
@@ -44,7 +44,7 @@ app.get('/faq', async (req, res) => {
     }
   });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
