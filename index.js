@@ -31,7 +31,7 @@ app.get('/faq', async (req, res) => {
       const users = result.rows; // Get rows from result
   
       // Render the table as HTML
-      let html = '<table border="1"><thead><tr><th>ID</th><th>Name</th><th>Email</th></tr></thead><tbody>';
+      let html = '<table border="1"><thead><tr><th>ID</th><th>order</th><th>Email</th></tr></thead><tbody>';
       users.forEach(user => {
         html += `<tr><td>${user.id}</td><td>${user.question}</td><td>${user.answer}</td></tr>`;
       });
