@@ -23,9 +23,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Navigate to project directory
-       run: cd /home/action-runner/simplenodejs/simplenodejs
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
@@ -38,5 +35,6 @@ jobs:
         echo "${{ DB_NAME }}" > .env 
         echo "${{ DB_PASSWORD }}" > .env
         echo "${{ DB_USER }}" > .env
+         -run: pm2 restart BackendAPI
 
 
